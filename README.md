@@ -1,2 +1,2 @@
 # RC_Templates
-Robocon development template
+Robocon development template.
