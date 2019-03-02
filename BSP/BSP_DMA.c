@@ -140,6 +140,48 @@ void DMA_USART2RxConfig(uint32_t DMABuffAddr, uint32_t buffsize)
  /*------------------------------80 Chars Limit--------------------------------*/
 	 /**
 	 * @Data    2019-01-18 10:26
+	 * @brief   USART2 RX DMA 配置，外设到内存(USART1->DR)
+	 * @param   DMABuffAddr  DMA目标存储地址
+	 * @retval  void
+	 */
+void DMA_USART2TxConfig(uint32_t DMABuffAddr, uint32_t buffsize)
+{
+	DMA_InitTypeDef DMA_InitStructure;
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
+	DMA_DeInit(USART2_TX_DMA_STREAM);
+	while(DMA_GetCmdStatus(USART2_TX_DMA_STREAM) != DISABLE)
+	{
+
+	}
+
+	DMA_InitStructure.DMA_Channel = USART2_TX_DMA_CHANNEL;  
+	DMA_InitStructure.DMA_PeripheralBaseAddr = USART2_TX_ADDR;	 
+	DMA_InitStructure.DMA_Memory0BaseAddr = DMABuffAddr;	
+	DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;	
+	DMA_InitStructure.DMA_BufferSize = buffsize;    
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable; 
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;	
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;	
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_Medium;      
+	DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;        
+	DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_1QuarterFull;    
+	DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;    
+	DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;    		   
+	DMA_Init(USART2_TX_DMA_STREAM, &DMA_InitStructure);
+	  
+	DMA_Cmd(USART2_TX_DMA_STREAM, ENABLE);
+  
+	while(DMA_GetCmdStatus(USART2_TX_DMA_STREAM) != ENABLE)
+	{
+
+	} 
+	USART_DMACmd(USART2,USART_DMAReq_Tx,ENABLE); 
+}
+ /*------------------------------80 Chars Limit--------------------------------*/
+	 /**
+	 * @Data    2019-01-18 10:26
 	 * @brief   USART3 RX DMA 配置，外设到内存(USART1->DR)
 	 * @param   DMABuffAddr  DMA目标存储地址
 	 * @retval  void
@@ -182,7 +224,50 @@ void DMA_USART3RxConfig(uint32_t DMABuffAddr, uint32_t buffsize)
 	USART_DMACmd(USART3,USART_DMAReq_Rx,ENABLE); 
 }
 
+ /*------------------------------80 Chars Limit--------------------------------*/
+	 /**
+	 * @Data    2019-01-18 10:26
+	 * @brief   USART6 RX DMA 配置，外设到内存(USART1->DR)
+	 * @param   DMABuffAddr  DMA目标存储地址
+	 * @retval  void
+	 */
+void DMA_USART6RxConfig(uint32_t DMABuffAddr, uint32_t buffsize)
+{
+	DMA_InitTypeDef DMA_InitStructure;
 
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
+	DMA_DeInit(USART3_RX_DMA_STREAM);
+	while(DMA_GetCmdStatus(USART6_RX_DMA_STREAM) != DISABLE)
+	{
+
+	}
+
+	DMA_InitStructure.DMA_Channel = USART6_RX_DMA_CHANNEL;  
+	DMA_InitStructure.DMA_PeripheralBaseAddr = USART6_RX_ADDR;	 
+	DMA_InitStructure.DMA_Memory0BaseAddr = DMABuffAddr;	
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;	
+	DMA_InitStructure.DMA_BufferSize = buffsize;    
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable; 
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;		
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;	
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_Medium;      
+	DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;        
+	DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_1QuarterFull;    
+	DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;    
+	DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;    	   
+	DMA_Init(USART6_RX_DMA_STREAM, &DMA_InitStructure);
+	  
+	DMA_Cmd(USART6_RX_DMA_STREAM, ENABLE);
+  
+	while(DMA_GetCmdStatus(USART6_RX_DMA_STREAM) != ENABLE)
+	{
+
+	}
+  
+	USART_DMACmd(USART3,USART_DMAReq_Rx,ENABLE); 
+}
 /*---------------------L O C A L - F U N C T I O N S--------------------------*/
 
 

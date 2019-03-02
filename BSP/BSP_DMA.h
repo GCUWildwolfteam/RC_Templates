@@ -36,6 +36,10 @@
 #define USART2_RX_ADDR						(uint32_t)(&USART2->DR)	//串口1数据寄存器地址
 #define USART2_RX_DMA_CHANNEL           	DMA_Channel_4		//DMA通道号
 #define USART2_RX_DMA_STREAM           		DMA1_Stream5		//DMA数据流
+
+#define USART2_TX_ADDR						(uint32_t)(&USART2->DR)	//串口1数据寄存器地址
+#define USART2_TX_DMA_CHANNEL           	DMA_Channel_4		//DMA通道号
+#define USART2_TX_DMA_STREAM           		DMA1_Stream6		//DMA数据流
 /********USART2_DMA_define_END********/
 
 /********USART3_DMA_define********/
@@ -44,16 +48,22 @@
 #define USART3_RX_DMA_STREAM           		DMA1_Stream1		//DMA数据流
 /********USART3_DMA_define_END********/
 
+/********USART3_DMA_define********/
+#define USART6_RX_ADDR						(uint32_t)(&USART6->DR)	//串口1数据寄存器地址
+#define USART6_RX_DMA_CHANNEL           	DMA_Channel_5		//DMA通道号
+#define USART6_RX_DMA_STREAM           		DMA2_Stream1		//DMA数据流
+/********USART3_DMA_define_END********/
 /*----------------------G L O B A L - D E F I N E S---------------------------*/
 
 
 
 /*-----------G L O B A L - F U N C T I O N S - P R O T O T Y P E S------------*/
 
-void DMA_USART1RxConfig(uint32_t USART1_DMABuff_addr, uint32_t buffsize);
-void DMA_USART2RxConfig(uint32_t USART2_DMABuff_addr, uint32_t buffsize);
-void DMA_USART3RxConfig(uint32_t USART3_DMABuff_addr, uint32_t buffsize);
-
+void DMA_USART1RxConfig(uint32_t DMABuffAddr, uint32_t buffsize);
+void DMA_USART2RxConfig(uint32_t DMABuffAddr, uint32_t buffsize);
+void DMA_USART3RxConfig(uint32_t DMABuffAddr, uint32_t buffsize);
+void DMA_USART2TxConfig(uint32_t DMABuffAddr, uint32_t buffsize);
+void DMA_USART6RxConfig(uint32_t DMABuffAddr, uint32_t buffsize);
 #endif	// __BSP_DMA_H
 /*----------------------------------FILE OF END-------------------------------*/
 
