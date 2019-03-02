@@ -37,7 +37,7 @@ typedef struct
 {
   USARTx_e USART_x;
   uint16_t crc;
-  uint8_t pUSARTSendBuff[13];
+  uint8_t *pUSARTSendBuff;
 }USARTSend_t;
 
 /*------------------------G L O B A L - M A C R O S --------------------------*/
@@ -106,12 +106,13 @@ typedef struct
 extern uint8_t Usart1Buffer[20];
 extern uint8_t Usart2Buffer[26];
 extern uint8_t Usart3Buffer[26];
-
+extern uint8_t Usart2SendBuffer[9];
 /*-----------G L O B A L - F U N C T I O N S - P R O T O T Y P E S------------*/
 
 void BSP_USART1_Init(uint32_t BaudRate);
 void BSP_USART2_Init(uint32_t BaudRate);
 void BSP_USART3_Init(uint32_t BaudRate);
+void BSP_USART2_Half_Init(uint32_t BaudRate);
 void USART_sendChar(USART_TypeDef* USARTx, char ch);
 
 #endif	// __BSP_USART_H
